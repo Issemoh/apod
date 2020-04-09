@@ -30,7 +30,6 @@
         {
             this.picAstronomyPicture = new System.Windows.Forms.PictureBox();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.btnGetToday = new System.Windows.Forms.Button();
             this.btnGetForDate = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.apodBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.dtePictureDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.picAstronomyPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,13 +46,13 @@
             // 
             this.picAstronomyPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAstronomyPicture.Location = new System.Drawing.Point(9, 93);
-            this.picAstronomyPicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picAstronomyPicture.Margin = new System.Windows.Forms.Padding(2);
             this.picAstronomyPicture.Name = "picAstronomyPicture";
             this.picAstronomyPicture.Size = new System.Drawing.Size(582, 346);
             this.picAstronomyPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAstronomyPicture.TabIndex = 0;
             this.picAstronomyPicture.TabStop = false;
-           
+            // 
             // lblDescription
             // 
             this.lblDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -65,18 +65,10 @@
             this.lblDescription.Size = new System.Drawing.Size(582, 146);
             this.lblDescription.TabIndex = 1;
             // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(370, 12);
-            this.txtDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(76, 20);
-            this.txtDate.TabIndex = 1;
-            // 
             // btnGetToday
             // 
             this.btnGetToday.Location = new System.Drawing.Point(11, 9);
-            this.btnGetToday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetToday.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetToday.Name = "btnGetToday";
             this.btnGetToday.Size = new System.Drawing.Size(145, 24);
             this.btnGetToday.TabIndex = 0;
@@ -87,7 +79,7 @@
             // btnGetForDate
             // 
             this.btnGetForDate.Location = new System.Drawing.Point(462, 9);
-            this.btnGetForDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetForDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetForDate.Name = "btnGetForDate";
             this.btnGetForDate.Size = new System.Drawing.Size(129, 24);
             this.btnGetForDate.TabIndex = 2;
@@ -134,7 +126,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(338, 15);
+            this.label1.Location = new System.Drawing.Point(190, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
@@ -145,7 +137,7 @@
             // 
             this.progressBar.ForeColor = System.Drawing.Color.Maroon;
             this.progressBar.Location = new System.Drawing.Point(174, 214);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar.MarqueeAnimationSpeed = 40;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(236, 19);
@@ -159,12 +151,21 @@
             this.apodBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.apodBackgroundWorker_DoWork);
             this.apodBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.apodBackgroundWorker_RunWorkerCompleted);
             // 
+            // dtePictureDate
+            // 
+            this.dtePictureDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtePictureDate.Location = new System.Drawing.Point(257, 12);
+            this.dtePictureDate.Name = "dtePictureDate";
+            this.dtePictureDate.Size = new System.Drawing.Size(200, 20);
+            this.dtePictureDate.TabIndex = 1;
+            // 
             // AstronomyPictureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(4)))), ((int)(((byte)(4)))));
             this.ClientSize = new System.Drawing.Size(604, 609);
+            this.Controls.Add(this.dtePictureDate);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
@@ -172,11 +173,10 @@
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnGetForDate);
             this.Controls.Add(this.btnGetToday);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.picAstronomyPicture);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AstronomyPictureForm";
             this.Text = "Astronomy Picture of the Day";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -190,7 +190,6 @@
 
         private System.Windows.Forms.PictureBox picAstronomyPicture;
         private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Button btnGetToday;
         private System.Windows.Forms.Button btnGetForDate;
         private System.Windows.Forms.Label lblDate;
@@ -199,6 +198,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.ComponentModel.BackgroundWorker apodBackgroundWorker;
+        private System.Windows.Forms.DateTimePicker dtePictureDate;
     }
 }
 

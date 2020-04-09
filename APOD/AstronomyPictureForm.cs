@@ -17,8 +17,12 @@ namespace APOD
         {
             // TODO: Set the text in the date TextBox to today's date,
             // formatted as MM/DD/YYYY   
-            DateTime today = DateTime.Today;
-            txtDate.Text = $"{today}";
+
+            dtePictureDate.Value = DateTime.Today;
+            //set  the range of valid dates 
+            dtePictureDate.MinDate = new DateTime(1995, 6, 16);
+            dtePictureDate.MaxDate = DateTime.Today;
+            GetAPOD(DateTime.Today);
 
                    
         }
@@ -32,34 +36,11 @@ namespace APOD
 
         private void btnGetForDate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Attempt to convert text in txtDate into a DateTime
-                // this will throw a formatException
-                DateTime date = DateTime.Parse(txtDate.Text);
+            DateTime date = dtePictureDate.Value;
+            // fetch Astronomy picture for this date
+            GetAPOD(date);
 
-                //Make sure the date is today or in the past
-                if (date > DateTime.Today)
-                {
-                    //Throw formatException
-                    throw new FormatException("Date can't be in the future");
-                }
-
-                //And make sure date is June 16, 1995 or later, the date APOD service started
-                if (date < new DateTime(1995, 06, 16))
-                {
-                    throw new FormatException("Date can't be before June 16, 1995");
-                }
-                GetAPOD(date);
-            }
-            //If date is a DateTime and within the allowed date range, 
-            // fetch Astron
-            catch (FormatException err)
-            {
-                MessageBox.Show(err.Message, "Invalid date");
-            }
         }
-
         private void GetAPOD(DateTime date)
         {
             // Clear current image and text, and disable form 
@@ -158,7 +139,7 @@ namespace APOD
 
             btnGetForDate.Enabled = enable;
             btnGetToday.Enabled = enable;
-            txtDate.Enabled = enable;
+           dtePictureDate.Enabled = enable;
 
             progressBar.Visible = !enable;   // The opposite of whether the buttons are enabled
         }
@@ -209,6 +190,5 @@ namespace APOD
 
             EnableForm(true);   // In any case, enable the user interface 
         }
-
     }
 }
